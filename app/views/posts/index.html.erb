@@ -1,0 +1,25 @@
+<div class="posts-index back">
+  <div class="container">
+    <div class="post-box-wrapper">
+      <% @posts.each do |post| %>
+        <%= link_to post_path(post) do %>
+          <div class="post-box">
+            <div class="post-box-inner">
+              <img class="text_image" src="<%= "/text_images/#{post.image_name}" %>" alt="">
+              <div class="post-head">
+                <div class="post-text-title">
+                  <%= post.text_title %>
+                </div>
+                <div class="post-price">
+                  ¥<%= post.price %>
+                </div>
+                <span class="fa fa-heart"></span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>

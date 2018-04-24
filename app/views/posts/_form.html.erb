@@ -1,0 +1,105 @@
+<%= form_with(model: post, local: true, id: :post_form) do |form| %>
+  <div class="forms-wrapper">
+    <div class="forms-box">
+      <div class="inner forms-inner">
+
+        <div class="image-box form-box">
+          <div class="image-box-inner form-inner">
+            <p id="img_error"></p>
+            <div class="box-title">
+              写真を追加
+            </div>
+            <div class="field">
+              <%= form.file_field :image, id: :post_image %>
+            </div>
+            <% if @post.id == nil %>
+              <div class="select-image">
+                <span class="fa fa-camera"></span>
+                <p>+</p>
+              </div>
+            <% end %>
+            <% if @post.id != nil %>
+              <img src="<%= "/text_images/#{@post.image_name}" %>" alt="" id="post-image">
+            <% end %>
+            <img id="post-image-preview" src="" alt="">
+          </div>
+        </div>
+
+        <div class="name-box form-box">
+          <div class="name-box-inner form-inner">
+            <p id="title_error"></p>
+            <div class="box-title">
+              書名・メモ
+            </div>
+            <div class="field text-title">
+              <%= form.text_field :text_title, placeholder: "書名", id: :post_text_title %>
+            </div>
+
+            <div class="field text-about">
+              <%= form.text_area :text_about, placeholder: "メモ", id: :post_text_about %>
+            </div>
+          </div>
+        </div>
+
+        <div class="label-box form-box">
+          <div class="label-box-inner form-inner">
+            <table>
+              <tr>
+                <th>
+                  <%= form.label :subject, "教科" %>
+                </th>
+                <td>
+                  <div class="field">
+                    <%= form.select :subject, [["物理", "physics"], ["数学", "math"], ["英語", "english"]], include_blank: true, id: :post_subject %>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>本の状態</th>
+                <td>
+                  <div class="field">
+                    <%= form.select :condition, [["新品、未使用", "1"], ["未使用に近い", "2"], ["汚い", "3"]], prompt: "選択してください", id: :post_condition %>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>値段</th>
+                <td>
+                  <div class="field">
+                    <%= form.number_field :price, value: 0, id: :post_price %>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>渡し場所案</th>
+                <td>
+                  <div class="field">
+                    <%= form.text_field :place, placeholder: "例：2403教室", id: :post_place %>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="submit-box form-box">
+          <div class="submit-box-inner form-inner">
+            <div class="posts-actions">
+              <%= form.submit form.object.new_record? ? "投稿" : "保存" %>
+            </div>
+            <% if @post.id != nil %>
+              <div class="posts-actions">
+                <%= link_to post_path(@post), method: :delete, class: "destroy-btn" do %>
+                  <h1>投稿を削除</h1>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+
+<% end %>

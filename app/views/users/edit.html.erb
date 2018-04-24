@@ -1,0 +1,81 @@
+<div class="user-edit back">
+  <div class="container">
+    <%= form_with(model: ([@user]), local: true) do |form| %>
+      <div class="user-show-about">
+        <div class="user-image">
+          <img src="<%= "/user_images/#{@user.image_name}" %>" alt="" id="user-image-preview">
+          <%= form.file_field :image, id: :user_image %>
+        </div>
+        <div class="user-name">
+          <%= form.text_field :name, id: :user_name, value: @user.name %>
+          <% if @user.errors.full_messages.any? %>
+            <span class="error"><%= @user.errors.full_messages[0] %></span>
+          <% end %>
+        </div>
+        <div class="user-comment">
+          <p><%= form.text_field :word, id: :user_word, value: @user.word %></p>
+        </div>
+
+        <div class="university-box">
+          <span class="fa fa-university"></span>
+          <div class="user-show-title">
+            <h1>大学</h1>
+          </div>
+          <div class="university-name">
+            <h2><%= form.text_field :university, id: :user_university, value: @user.university %></h2>
+            <h3><%= form.text_field :campus, id: :user_campus, value: @user.campus %></h3>
+          </div>
+        </div>
+
+        <div class="user-books">
+          <span class="fa fa-book"></span>
+          <div class="user-show-title">
+            <h1>出品</h1>
+          </div>
+          <div class="books-number">
+            <h2><%= @posts_count %></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-show-others">
+        <div class="show-want-box">
+          <div class="show-want-title">
+            <h1>欲しい本</h1>
+          </div>
+          <div class="show-want-books">
+            <ul>
+              <% @user.books.each do |book| %>
+                <% if book.id != nil %>
+                  <li><%= book.title %>
+                    <%= link_to "(x)", user_book_path(@user, book), method: :delete, class: "command" %>
+                  </li>
+                <% end %>
+              <% end %>
+              <li>
+                <%= form.fields_for :books do |b| %>
+                  <%= b.text_field :title, value: "" %>
+                <!-- <% end %> -->
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="show-memo-box">
+          <div class="show-memo-title">
+            <h1>メモ</h1>
+          </div>
+          <div class="show-memo">
+            <p><%= form.text_area :memo, id: :user_memo, value: @user.memo %></p>
+          </div>
+        </div>
+        <div class="save-btn">
+          <%= form.submit "保存" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to 'Show', @user %> |
+  <%= link_to 'Back', users_path %>
+</div>

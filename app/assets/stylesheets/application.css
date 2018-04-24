@@ -1,0 +1,178 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+/*¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥reset*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+/*¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥共通*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic ProN W3', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input, textarea, select {
+  -webkit-appearance: none;
+  resize: none;
+  outline: 0;
+  padding: 0;
+}
+
+.back {
+  background-color: rgb(200, 255, 150);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.clear {
+  clear: both;
+}
+
+/*¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥ヘッダー*/
+
+header {
+  background-color: rgba(0,0,0,.5);
+  box-shadow: 0 2px 6px black;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.search-form {
+  background: rgb(0,50,0);
+  width: 50%;
+  height: 40px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
+  margin-left: 30px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#search {
+  font-size: 24px;
+  border-radius: 5px;
+  border: none;
+  width: 80%;
+  height: 30px;
+  padding-left: 5px;
+  vertical-align: top;
+  background: transparent;
+  color: white;
+}
+
+#search-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+  background: rgb(0, 100, 255);
+  cursor: pointer;
+  float: right;
+}
+
+.header-logo {
+  color: white;
+  padding-left: 20px;
+  font-size: 24px;
+  line-height: 60px;
+  display: inline-block;
+}
+
+.header-menus {
+  color: white;
+  float: right;
+  line-height: 60px;
+  font-size: 18px;
+}
+
+.header-menus li {
+  float: left;
+  padding-right: 30px;
+}
+
+.header-menus img {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.header-menus .fa {
+  padding-left: 5px;
+}

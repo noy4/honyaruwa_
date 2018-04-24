@@ -1,0 +1,60 @@
+<div class="user-show back">
+  <div class="container">
+    <div class="user-show-about">
+      <div class="user-image">
+        <img src="<%= "/user_images/#{@user.image_name}" %>" alt="">
+      </div>
+      <div class="user-name">
+        <h1><%= @user.name %></h1>
+      </div>
+      <div class="user-comment">
+        <p><%= @user.word %></p>
+      </div>
+
+      <div class="university-box">
+        <span class="fa fa-university"></span>
+        <div class="user-show-title">
+          <h1>大学</h1>
+        </div>
+        <div class="university-name">
+          <h2><%= @user.university %></h2>
+          <h3><%= @user.campus %></h3>
+        </div>
+      </div>
+
+      <div class="user-books">
+        <span class="fa fa-book"></span>
+        <div class="user-show-title">
+          <h1>出品</h1>
+        </div>
+        <div class="books-number">
+          <h2><%= @posts_count %></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-show-others">
+      <div class="show-want-box">
+        <div class="show-want-title">
+          <h1>欲しい本</h1>
+        </div>
+        <div class="show-want-books">
+          <ul>
+            <% @user.books.each do |book| %>
+              <li><%= book.title %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="show-memo-box">
+        <div class="show-memo-title">
+          <h1>メモ</h1>
+        </div>
+        <div class="show-memo">
+          <p><%= @user.memo %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

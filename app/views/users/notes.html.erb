@@ -1,0 +1,43 @@
+<div class="users-notes back">
+  <div class="container">
+    <div class="note-box-wrapper">
+      <% @notes.each do |note| %>
+        <% if note.state == "applied" %>
+          <div class="note-box note-applied">
+            <div class="note-image-box">
+              <%= link_to image_tag("/user_images/#{note.user.image_name}",
+                class: "note-user-image"), user_path(note.user) %>
+            </div>
+            <div class="note-content">
+              <p><%= note.user.name %>さん：<%= note.post.text_title %> に応募しました</p>
+            </div>
+            <div class="note-reply">
+              <%= link_to "承諾", "/posts/#{note.post_id}/applies/#{note.id}/win", method: :post %>&nbsp;|
+              <%= link_to "拒否", "/posts/#{note.post_id}/applies/#{note.id}/lose", method: :post %>
+            </div>
+          </div>
+        <% elsif note.state == "win" %>
+          <div class="note-box note-win">
+            <div class="note-image-box">
+              <%= link_to image_tag("/user_images/#{note.post_user.image_name}",
+                class: "note-user-image"), user_path(note.post_user) %>
+            </div>
+            <%= link_to post_apply_path(note.post_id, note.id), method: :delete, class: "note-content" do %>
+              <p><%= note.post.text_title %> の応募が承諾されました</p>
+            <% end %>
+          </div>
+        <% elsif note.state == "lose"%>
+        <div class="note-box note-lose">
+          <div class="note-image-box">
+            <%= link_to image_tag("/user_images/#{note.post_user.image_name}",
+              class: "note-user-image"), user_path(note.post_user) %>
+          </div>
+          <%= link_to post_apply_path(note.post_id, note.id), method: :delete, class: "note-content" do %>
+            <p><%= note.post.text_title %> の応募に落選しました</p>
+          <% end %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

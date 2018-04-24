@@ -1,0 +1,122 @@
+<div class="posts-show back">
+  <div class="container">
+    <div class="show-top">
+      <div class="show-top-inner">
+
+        <div class="show-price">
+          <h1>¥<%= @post.price %></h1>
+        </div>
+        <div class="post-time">
+          <div class="post-day">
+            <%= @post.created_at.strftime("%Y/%m/%d") %>
+          </div>
+          <%= @post.created_at.strftime("%H:%M") %>
+        </div>
+
+        <div class="show-text">
+          <div class="show-image">
+            <img src="<%= "/text_images/#{@post.image_name}" %>" alt="">
+          </div>
+          <div class="show-text-name">
+            <h2>
+              <%= @post.text_title %>
+              <span class="fa fa-heart"></span>
+            </h2>
+          </div>
+        </div>
+
+        <% if @post.applies.find_by(post_id: @post.id, state: "win") %>
+
+          <%= link_to edit_post_path(@post),class: "show-sold" do %>
+            <h2>SOLD</h2>
+          <% end %>
+
+        <% else %>
+
+          <% if !@current_user || @current_user.id != @post.user_id %>
+
+            <% if @apply %>
+              <%= link_to post_apply_path(@post), method: :delete, class: "applied" do %>
+                <h2>応募中</h2>
+              <% end %>
+            <% else %>
+              <%= link_to post_applies_path(@post), method: :post, class: "show-want-btn" do %>
+                <h2>欲しい！</h2>
+              <% end %>
+            <% end %>
+
+          <% else %>
+            <%= link_to edit_post_path(@post),class: "show-want-btn" do %>
+              <h2>編集する</h2>
+            <% end %>
+          <% end %>
+
+        <% end %>
+
+      </div>
+    </div>
+    <div class="show-bottom">
+      <div class="show-bottom-inner">
+
+          <% if !@current_user || @current_user.id != @post.user_id %>
+            <%= link_to user_path(@user), class: "show-user show-box" do %>
+              <div class="show-user-image">
+                <img src="<%= "/user_images/#{@user.image_name}" %>" alt="">
+              </div>
+              <div class="show-user-name">
+                <h2><%= @user.name %></h2>
+              </div>
+              <div class="show-user-comment">
+                <h3><%= @user.word %></h3>
+              </div>
+            <% end %>
+          <% else %>
+            <%= link_to edit_user_path(@user), class: "show-user show-box" do %>
+              <div class="show-user-image">
+                <img src="<%= "/user_images/#{@user.image_name}" %>" alt="">
+              </div>
+              <div class="show-user-name">
+                <h2><%= @user.name %></h2>
+              </div>
+              <div class="show-user-comment">
+                <h3><%= @user.word %></h3>
+              </div>
+            <% end %>
+          <% end %>
+
+          <div class="show-text-about show-box">
+            <div class="about-inner">
+              <%= @post.text_about %>
+            </div>
+          </div>
+
+          <div class="show-others show-box">
+            <div class="condition">
+              <h2>本の状態</h2>
+              <div class="other-back">
+                <p><%= @condition %></p>
+              </div>
+            </div>
+            <div class="place">
+              <h2>渡し場所案</h2>
+              <div class="other-back">
+                <p><%= @post.place %></p>
+              </div>
+            </div>
+          </div>
+
+          <form class="show-comment show-box">
+            <div class="comment-title-back">
+              <h2>コメントする</h2>
+            </div>
+            <div class="comment-btn-back">
+              <button type="submit" name="button">送信</button>
+            </div>
+            <textarea name="comment" placeholder="コメントを書く"></textarea>
+          </form>
+
+      </div>
+    </div>
+    <%= link_to 'Back', posts_path %>
+  </div>
+</div>

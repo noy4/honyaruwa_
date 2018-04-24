@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Honyaruwa</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body>
+    <header>
+      <%= link_to "ホンヤルワー", posts_path, class: 'header-logo' %>
+      <%= form_tag(posts_path, class: "search-form", method: :get) do %>
+        <%= text_field_tag :search, @search, placeholder: "🔎検索" %>
+        <%= submit_tag '検索', :name => nil, id: "search-btn" %>
+      <% end %>
+      <!-- <%= form_tag(posts_path, method: "get") do %>
+       <%= select_tag "subject", options_for_select([["物理", "physics"],["数学","math"],["英語","english"]]), prompt: "条件" %>
+      <% end %> -->
+      <ul class="header-menus">
+        <% if @current_user %>
+          <!-- <li>条件<span class="fa fa-caret-down"></span></li> -->
+          <li>
+            <%= link_to "/notes/#{@current_user.id}" do %>
+              通知<span class="fa fa-bell"></span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_post_path do %>
+              投稿<span class="fa fa-plus-circle"></span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "/logout", method: :post do %>
+              ログアウト<span class=""></span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_user_path(@current_user) do %>
+              設定<span class="fa fa-cog"></span>
+            <% end %>
+          </li>
+          <img src="<%= "/user_images/#{@current_user.image_name}" %>" alt="">
+        <% else %>
+          <li>
+            <%= link_to "/login" do %>
+              ログイン<span class=""></span>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to new_user_path do %>
+              新規登録<span class="fa fa-plus-circle"></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+    </header>
+    <% if notice %>
+      <div id="flash">
+        <p><%= notice %></p>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
