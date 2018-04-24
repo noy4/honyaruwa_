@@ -71,18 +71,18 @@ $(document).on('turbolinks:load', function(){
 
   });
 
-  $('#post_form').submit(function(){
-    if ($('#post_image').val() == ''){
-      $('#img_error').text('写真を追加してください');
-    }else{
-      $('#img_error').text('');
-    }
-
-    if ($('#text_title').val() == ''){
-      $('#title_error').text('書名を入力してください');
-    }else{
-      $('#title_error').text('書名を入力してください');
-    }
+  // $('#post_form').submit(function(){
+  //   if ($('#post_image').val() == ''){
+  //     $('#img_error').text('写真を追加してください');
+  //   }else{
+  //     $('#img_error').text('');
+  //   }
+  //
+  //   if ($('#text_title').val() == ''){
+  //     $('#title_error').text('書名を入力してください');
+  //   }else{
+  //     $('#title_error').text('書名を入力してください');
+  //   }
 
     // if($('#text_title').val() == ''){
     //   $('').text('');
